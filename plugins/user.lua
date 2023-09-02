@@ -35,16 +35,16 @@ return {
       local luasnip = require "luasnip"
       local has_words_before = function()
         local cursor = vim.api.nvim_win_get_cursor(0)
-        return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s') 
+        return (vim.api.nvim_buf_get_lines(0, cursor[1] - 1, cursor[1], true)[1] or ''):sub(cursor[2], cursor[2]):match('%s')
       end
       -- modify the mapping part of the table
-      opts.mapping["<Tab>"] =  cmp.mapping(function(fallback)
+      opts.mapping["<Tab>"] = cmp.mapping(function(fallback)
         if require("copilot.suggestion").is_visible() then
           require("copilot.suggestion").accept()
         elseif cmp.visible() then
           cmp.select_next_item({ behavior = cmp.SelectBehavior.Insert })
         elseif luasnip.expandable() then
-          luasnip.expand()
+         luasnip.expand()
         elseif has_words_before() then
           cmp.complete()
         else
@@ -56,5 +56,16 @@ return {
       })
       return opts
     end,
+  },
+  {
+    "David-Kunz/jester"
+  },
+  {
+    "iamcco/markdown-preview.nvim",
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
+    end,
+    ft = { "markdown" },
   }
 }

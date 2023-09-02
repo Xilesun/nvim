@@ -20,6 +20,7 @@ return {
       return opts
     end,
   },
+  -- { "L3MON4D3/LuaSnip", enabled = false },
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --
