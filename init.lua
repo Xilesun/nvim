@@ -14,17 +14,14 @@ return {
       --   ["remote_name"] = "https://remote_url.come/repo.git", -- full remote url
       --   ["remote2"] = "github_user/repo", -- GitHub user/repo shortcut,
       --   ["remote3"] = "github_user", -- GitHub user assume AstroNvim fork
-    },
+    }
   },
 
   -- Set colorscheme to use
   colorscheme = "onedark",
 
   -- Diagnostics configuration (for vim.diagnostics.config({...})) when diagnostics are on
-  diagnostics = {
-    virtual_text = true,
-    underline = true,
-  },
+  diagnostics = {virtual_text = true, underline = true},
 
   lsp = {
     -- customize lsp formatting options
@@ -37,13 +34,13 @@ return {
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
-        },
+        }
       },
       disabled = { -- disable formatting capabilities for the listed language servers
         -- disable lua_ls formatting capability if you want to use StyLua to format your lua code
         -- "lua_ls",
       },
-      timeout_ms = 1000, -- default format timeout
+      timeout_ms = 1000 -- default format timeout
       -- filter = function(client) -- fully override the default formatting function
       --   return true
       -- end
@@ -53,21 +50,34 @@ return {
       -- "pyright"
     },
     config = {
-      clangd = {
-        cmd = { "clangd", "--offset-encoding=utf-16" },
+      clangd = {cmd = {"clangd", "--offset-encoding=utf-16"}},
+      golangcilsp = {
+        cmd = {"golangci-lint-langserver"},
+        root_dir = function(opts)
+          opts.root_dir = require("lspconfig.util").root_pattern("go.mod",
+                                                                 ".git")
+        end,
+        init_options = {
+          command = {
+            "golangci-lint", "run", "--enable-all", "--disable", "lll",
+            "--out-format", "json", "--issues-exit-code=1"
+          }
+        }
       }
     }
   },
 
   -- Configure require("lazy").setup() options
   lazy = {
-    defaults = { lazy = true },
+    defaults = {lazy = true},
     performance = {
       rtp = {
         -- customize default disabled vim plugins
-        disabled_plugins = { "tohtml", "gzip", "matchit", "zipPlugin", "netrwPlugin", "tarPlugin" },
-      },
-    },
+        disabled_plugins = {
+          "tohtml", "gzip", "matchit", "zipPlugin", "netrwPlugin", "tarPlugin"
+        }
+      }
+    }
   },
 
   -- This function is run last and is a good place to configuring
@@ -86,5 +96,5 @@ return {
     --     ["~/%.config/foo/.*"] = "fooscript",
     --   },
     -- }
-  end,
+  end
 }

@@ -9,11 +9,11 @@ return {
     -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
     config.sources = {
       -- Set a formatter
-      null_ls.builtins.formatting.eslint_d,
-      null_ls.builtins.formatting.gofmt,
+      null_ls.builtins.formatting.eslint_d, null_ls.builtins.formatting.gofmt,
       null_ls.builtins.formatting.goimports,
-      null_ls.builtins.formatting.lua_format,
+      null_ls.builtins.formatting.lua_format
+          .with({extra_args = {"--indent-width=2"}})
     }
     return config -- return final config table
-  end,
+  end
 }
