@@ -10,7 +10,8 @@ return {
                                   opts.ensure_installed, {
             "lua_ls", "clangd", "cmake", "cssls", "dotls", "dockerls", "gopls",
             "html", "jsonls", "yamlls", "marksman", "sqlls", "pyright",
-            "tailwindcss", "tsserver", "eslint", "golangci_lint_ls"
+            "tailwindcss", "tsserver", "eslint", "golangci_lint_ls",
+            "clojure_lsp"
           })
     end
   },

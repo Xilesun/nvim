@@ -52,5 +52,18 @@ return {
     build = "cd app && npm install",
     init = function() vim.g.mkdp_filetypes = {"markdown"} end,
     ft = {"markdown"}
+  }, {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim", "marilari88/neotest-vitest",
+      "haydenmeade/neotest-jest"
+    },
+    config = function()
+      require('neotest').setup({
+        adapters = {require('neotest-vitest')},
+        require('neotest-jest')({jestCommand = "yarn test --"})
+      })
+    end
   }
 }
