@@ -36,8 +36,13 @@ return {
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = {name = "Buffers"},
+    -- paste image
+    ["<leader>P"] = {
+      '<cmd>lua require"clipboard-image.paste".paste_img()<cr>',
+      desc = "Paste image"
+    },
     -- quick save
-    ["<C-s>"] = {":w!<cr>", desc = "Save File"}, -- change description but the same command
+    ["<D-s>"] = {":w!<cr>", desc = "Save File"}, -- change description but the same command
     -- neotest
     ["<leader>T"] = {name = "neotest"},
     ["<leader>Tr"] = {

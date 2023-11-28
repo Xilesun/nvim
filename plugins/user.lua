@@ -100,5 +100,12 @@ return {
         require('neotest-jest')({jestCommand = "yarn test --"})
       })
     end
+  }, {
+    "xilesun/clipboard-image.nvim",
+    config = function()
+      require('clipboard-image').setup({
+        default = {img_dir = {"%:p:h", "static"}, img_dir_txt = "./static"}
+      })
+    end
   }
 }
